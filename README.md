@@ -1,4 +1,4 @@
-# Contao ssl domain extension
+# Contao SSL Domains extension
 Contao 4 bundle
 
 ___
@@ -7,5 +7,5 @@ ___
 
 Add to app/AppKernel.php (after ContaoCoreBundle)
 ```
-new Agoat\SSLDomainBundle\AgoatSSLDomainBundle(),
+new Agoat\SSLDomainsBundle\AgoatSSLDomainsBundle(),
 ```
