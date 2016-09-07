@@ -1,12 +1,12 @@
 <?php
  
  /**
- * Contao Open Source CMS - SSL Domain extension
+ * Contao Open Source CMS - SSL Domains extension
  *
  * Copyright (c) 2016 Arne Stappen (aGoat)
  *
  *
- * @package   ssldomain-bundle
+ * @package   ssldomains-bundle
  * @author    Arne Stappen <http://agoat.de>
  * @license	  LGPL-3.0+
  */
@@ -16,5 +16,5 @@
  * Hooks
  */
 
-$GLOBALS['TL_HOOKS']['getPageLayout'][] = array('Agoat\\SSLDomain\\Controller','checkSSL');
+$GLOBALS['TL_HOOKS']['getPageLayout'][] = array('Agoat\\SSLDomains\\Controller','checkSSL');
 
