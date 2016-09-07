@@ -12,7 +12,7 @@
  */
 
 
-namespace Agoat\SSLDomain;
+namespace Agoat\SSLDomains;
  
 use Contao\System;
 use Contao\Controller;
