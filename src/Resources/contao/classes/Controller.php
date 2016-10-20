@@ -14,25 +14,29 @@
 
 namespace Agoat\SSLDomains;
  
-use Contao\System;
 use Contao\Controller;
 use Contao\Environment;
+use Contao\Frontend;
 
 
 
 class Controller extends Controller
 {
-
-	// add frontend stylesheets to backend
-	public function checkSSL ($objPage, $objLayout, $_this)
+	
+	// check for SSL and force a secure connection
+	public function checkSSL ($strCacheKey)
 	{
+		$objRootPage = Frontend::getRootPageFromUrl();
+		
 		// force ssl when root is set to use ssl
-		if ($objPage->rootUseSSL && !Environment::get('ssl'))
+		if ($objRootPage->useSSL && !Environment::get('ssl'))
 		{
 			$strUrl = 'https://' . Environment::get('httpHost') . Environment::get('requestUri');
 			
 			static::redirect($strUrl, 301);
 		}
+
+		return $strCacheKey;
 	}
 }
 
