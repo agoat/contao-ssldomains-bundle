@@ -16,7 +16,6 @@ namespace Agoat\SSLDomains;
  
 use Contao\Controller;
 use Contao\Environment;
-use Contao\Frontend;
 
 
 
@@ -24,19 +23,34 @@ class Controller extends Controller
 {
 	
 	// check for SSL and force a secure connection
-	public function checkSSL ($strCacheKey)
+	public function checkSSL ()
 	{
-		$objRootPage = Frontend::getRootPageFromUrl();
-		
-		// force ssl when root is set to use ssl
-		if ($objRootPage->useSSL && !Environment::get('ssl'))
+		if (!Environment::get('ssl'))
 		{
-			$strUrl = 'https://' . Environment::get('httpHost') . Environment::get('requestUri');
+			$host = Environment::get('host');
+		
+			// The language is set in the URL
+			if (\Config::get('addLanguageToUrl') && \Input::get('language'))
+			{
+				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage($host, \Input::get('language'));
+			}
+			else
+			{
+				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage($host, Environment::get('httpAcceptLanguage'));
+			}
 			
-			static::redirect($strUrl, 301);
+			// No matching root page found
+			if ($objRootPage !== null)
+			{
+				// force ssl when root is set to use ssl
+				if ($objRootPage->useSSL)
+				{
+					$strUrl = 'https://' . Environment::get('httpHost') . Environment::get('requestUri');
+					
+					static::redirect($strUrl, 301);
+				}
+			}
 		}
-
-		return $strCacheKey;
 	}
 }
 

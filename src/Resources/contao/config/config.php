@@ -16,4 +16,4 @@
  * Hooks
  */
 
-$GLOBALS['TL_HOOKS']['getCacheKey'][] = array('Agoat\\SSLDomains\\Controller','checkSSL');
+$GLOBALS['TL_HOOKS']['initializeSystem'][] = array('Agoat\\SSLDomains\\Controller','checkSSL');
