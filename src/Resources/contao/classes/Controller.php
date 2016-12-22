@@ -14,12 +14,11 @@
 
 namespace Agoat\SSLDomains;
  
-use Contao\Controller;
 use Contao\Environment;
 
 
 
-class Controller extends Controller
+class Controller extends \Contao\Controller
 {
 	
 	// check for SSL and force a secure connection
