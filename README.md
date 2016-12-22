@@ -1,6 +1,8 @@
 # Contao SSL Domains extension
 Contao 4 bundle
 
+*This little extension is needed as long as the contao/core-bundle do not use the Symofony CMF router 
+(see https://github.com/contao/core-bundle/issues/443)*
 ___
 
 ###Install
