@@ -17,7 +17,6 @@ namespace Agoat\SSLDomains;
 use Contao\Environment;
 
 
-
 class Controller extends \Contao\Controller
 {
 	
@@ -26,23 +25,21 @@ class Controller extends \Contao\Controller
 	{
 		if (!Environment::get('ssl'))
 		{
-			$host = Environment::get('host');
-		
 			// The language is set in the URL
 			if (\Config::get('addLanguageToUrl') && \Input::get('language'))
 			{
-				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage($host, \Input::get('language'));
+				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage(Environment::get('host'), \Input::get('language'));
 			}
 			else
 			{
-				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage($host, Environment::get('httpAcceptLanguage'));
+				$objRootPage = \PageModel::findFirstPublishedRootByHostAndLanguage(Environment::get('host'), Environment::get('httpAcceptLanguage'));
 			}
-			
+
 			// No matching root page found
 			if ($objRootPage !== null)
 			{
 				// force ssl when root is set to use ssl
-				if ($objRootPage->useSSL)
+				if ($objRootPage->useSSL && $objRootPage->dns != '')
 				{
 					$strUrl = 'https://' . Environment::get('httpHost') . Environment::get('requestUri');
 					
