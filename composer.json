@@ -1,5 +1,5 @@
 {
-    "name": "agoat/ssldomains-bundle",
+    "name": "agoat/contao-ssldomains",
     "type": "contao-bundle",
     "description": "Contao SSL Domains extension",
     "license": "LGPL-3.0+",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.6",
         "symfony/framework-bundle": "~2.8|~3.0",
         "contao/core-bundle": "^4.2"
     },
